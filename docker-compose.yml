@@ -31,3 +31,12 @@ services:
     build: ./inventory-service
     ports:
       - "8006:8006"
+  api-gateway:
+    image: nginx:latest
+    volumes:
+      - ./api-gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - user-service
+      - product-service
